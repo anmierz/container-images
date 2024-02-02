@@ -1,0 +1,9 @@
+From	archlinux
+
+Run	pacman -Sy
+Run	pacman -S --noconfirm nginx
+Copy	nginx-my.conf /etc/nginx/nginx-my.conf
+Run	mkdir /usr/share/nginx/html/repo
+Run	pacman -Syw --noconfirm --cachedir /usr/share/nginx/html/repo --dbpath /usr/share/nginx/html/repo dbus-broker-units dbus-daemon-units base base-devel linux linux-firmware mkinitcpio vim openssh
+Run	cp /usr/share/nginx/html/repo/sync/*.db /usr/share/nginx/html/repo/
+Cmd	["nginx", "-c", "/etc/nginx/nginx-my.conf"]
